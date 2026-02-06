@@ -42,7 +42,7 @@ async def verify_key(data: LicenseCheck):
     
     # ИСПРАВЛЕННЫЙ ФОРМАТ: теперь учитываем время (часы:минуты:секунды)
     try:
-        expiry_date = datetime.strptime(expiry_str, "%Y-%m-%d %H:%M:%S")
+        expiry_date = datetime.strptime(expiry_str.strip(), "%Y-%m-%d %H:%M:%S")
     except ValueError:
         # Резервный вариант, если в базе вдруг осталась старая запись без времени
         expiry_date = datetime.strptime(expiry_str, "%Y-%m-%d")
