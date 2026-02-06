@@ -39,7 +39,7 @@ async def verify_key(data: LicenseCheck):
         return {"status": "error", "message": "Ключ не найден в базе"}
 
     db_hwid, expiry_str = result
-    
+    expiry_date = datetime.strptime(expiry_str.strip(), "%Y-%m-%d %H:%M:%S")
     # ИСПРАВЛЕННЫЙ ФОРМАТ: теперь учитываем время (часы:минуты:секунды)
     try:
         expiry_date = datetime.strptime(expiry_str, "%Y-%m-%d %H:%M:%S")
